@@ -29,4 +29,4 @@ jobs:
       run: dotnet test --no-build --verbosity normal  ${{ github.workspace }}/AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj
 
     - name: Publish
-      run: dotnet publish --no-build --verbosity normal
+      run: dotnet publish --no-build --verbosity normal ${{ github.workspace }}/AnimalAdoption.Web.Portal/AnimalAdoption.Web.Portal.csproj --output ${{ github.workspace }}/artifact/webapp
