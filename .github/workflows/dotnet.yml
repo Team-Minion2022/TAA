@@ -75,3 +75,21 @@ jobs:
         app-name: web-taa-dev-sea
         publish-profile: ${{ secrets.DEV_PUBLISH_WEBAPP_PUBLISH_PROFILE }}
         package: ${{ github.workspace }}/artifact/webapp
+
+    - name: Set Web App ACR authentication
+      uses: Azure/appservice-settings@v1
+      with:
+        app-name: web-taa-dev-sea
+        app-settings-json: |
+          [
+            {
+              "name": "GlobalPassword",
+              "value": "${{ secrets.GLOBAL_PASSWORD }}",
+              "slotSetting": false
+            },
+            {
+              "name": "SimulatedFailureChance",
+              "value": 0,
+              "slotSetting": false
+            }
+      ]
