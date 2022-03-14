@@ -95,12 +95,12 @@ jobs:
           [
             {
               "name": "GlobalPassword",
-              "value": ${{ steps.myGetSecretAction.outputs.GlobalPassword }},
+              "value": "${{ steps.myGetSecretAction.outputs.GlobalPassword }}",
               "slotSetting": false
             },
             {
               "name": "SimulatedFailureChance",
-              "value": ${{ steps.myGetSecretAction.outputs.SimulatedFailureChance }},
+              "value": "${{ steps.myGetSecretAction.outputs.SimulatedFailureChance }}",
               "slotSetting": false
             }
           ]
