@@ -30,3 +30,11 @@ jobs:
 
     - name: Publish
       run: dotnet publish --no-build --verbosity normal ${{ github.workspace }}/AnimalAdoption.Web.Portal/AnimalAdoption.Web.Portal.csproj --output ${{ github.workspace }}/artifact/webapp
+  
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        name: webapp
+        path: ${{ github.workspace }}/artifact/webapp
+        if-no-files-found: error
+    
