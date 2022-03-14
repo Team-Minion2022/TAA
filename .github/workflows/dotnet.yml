@@ -75,6 +75,12 @@ jobs:
         creds: ${{ secrets.DEV_RG_SP }}
         environment: azurecloud
         
+    - uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: kv-taa-dev-sea
+        secrets: GlobalPassword,SimulatedFailureChance
+      id: myGetSecretAction # ID for secrets that you will reference
+      
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
@@ -89,12 +95,12 @@ jobs:
           [
             {
               "name": "GlobalPassword",
-              "value": "${{ secrets.GLOBAL_PASSWORD }}",
+              "value": ${{ steps.myGetSecretAction.outputs.GlobalPassword }},
               "slotSetting": false
             },
             {
               "name": "SimulatedFailureChance",
-              "value": 0,
+              "value": ${{ steps.myGetSecretAction.outputs.SimulatedFailureChance }},
               "slotSetting": false
             }
           ]
