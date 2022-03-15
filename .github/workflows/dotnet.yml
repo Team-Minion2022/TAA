@@ -106,7 +106,12 @@ jobs:
             }
           ]
 
+
   deploy_infra_to_prod:
+    env: 
+      TENANT_ID: "ab5eb3d0-6067-40ee-b4c0-a2ce05dbf039"
+      RGSP_OBJECTID: "20e6d507-69dd-4d56-b228-f1fb9175eff3"
+      
     runs-on: ubuntu-latest
     needs: deploy_to_dev
     environment: 'prod-webapp'
@@ -131,7 +136,7 @@ jobs:
         resourceGroupName: 'DevOpsGitHub-2022-03-14-team-02-prod'
         template: ${{ github.workspace }}/deploy.bicep
         deploymentMode: incremental
-        parameters: tenantGuid="ab5eb3d0-6067-40ee-b4c0-a2ce05dbf039" appServicePlanName="asp-taa-prod-sea" keyVaultName="kv-taa-prod-sea" webAppName="web-taa-prod-sea" resourceGroupServicePrincipalManagedApplicationObjectId="20e6d507-69dd-4d56-b228-f1fb9175eff3"
+        parameters: tenantGuid=$env:TENANT_ID appServicePlanName="asp-taa-prod-sea" keyVaultName="kv-taa-prod-sea" webAppName="web-taa-prod-sea" resourceGroupServicePrincipalManagedApplicationObjectId=$env:RGSP_OBJECTID
           
   deploy_to_prod:
     runs-on: ubuntu-latest
