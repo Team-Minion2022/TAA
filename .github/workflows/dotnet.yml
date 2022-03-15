@@ -113,6 +113,12 @@ jobs:
     if: github.ref == 'refs/heads/master'
     
     steps:
+    - name: Download a Bicep Build Artifact
+      uses: actions/download-artifact@v3.0.0
+      with:
+        name: bicep
+        path: ${{ github.workspace }}/deploy.bicep
+    
     - name: Deploy Azure Resource Manager (ARM) Template
       uses: Azure/arm-deploy@v1
       with:
@@ -125,7 +131,7 @@ jobs:
           keyVaultName = kv-taa-prod-sea
           webAppName = web-taa-prod-sea
           resourceGroupServicePrincipalManagedApplicationObjectId = 20e6d507-69dd-4d56-b228-f1fb9175eff3
-
+          
   deploy_to_prod:
     runs-on: ubuntu-latest
     needs: deploy_infra_to_prod
@@ -139,12 +145,6 @@ jobs:
         name: webapp
         path: ${{ github.workspace }}/artifact/webapp
         
-    - name: Download a Bicep Build Artifact
-      uses: actions/download-artifact@v3.0.0
-      with:
-        name: bicep
-        path: ${{ github.workspace }}/deploy.bicep
-    
     - name: Azure Login
       uses: Azure/login@v1.4.3
       with:
