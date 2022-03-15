@@ -136,7 +136,7 @@ jobs:
         resourceGroupName: 'DevOpsGitHub-2022-03-14-team-02-prod'
         template: ${{ github.workspace }}/deploy.bicep
         deploymentMode: incremental
-        parameters: tenantGuid=$env:TENANT_ID appServicePlanName="asp-taa-prod-sea" keyVaultName="kv-taa-prod-sea" webAppName="web-taa-prod-sea" resourceGroupServicePrincipalManagedApplicationObjectId=$env:RGSP_OBJECTID
+        parameters: tenantGuid="${{ env:TENANT_ID }}" appServicePlanName="asp-taa-prod-sea" keyVaultName="kv-taa-prod-sea" webAppName="web-taa-prod-sea" resourceGroupServicePrincipalManagedApplicationObjectId="${{ env:RGSP_OBJECTID }}"
           
   deploy_to_prod:
     runs-on: ubuntu-latest
