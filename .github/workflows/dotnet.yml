@@ -117,7 +117,7 @@ jobs:
       uses: actions/download-artifact@v3.0.0
       with:
         name: bicep
-        path: ${{ github.workspace }}/deploy.bicep
+        path: ${{ github.workspace }}
         
     - name: Azure Login
       uses: Azure/login@v1.4.3
