@@ -118,6 +118,12 @@ jobs:
       with:
         name: bicep
         path: ${{ github.workspace }}/deploy.bicep
+        
+    - name: Azure Login
+      uses: Azure/login@v1.4.3
+      with:
+        creds: ${{ secrets.PROD_RG_SP }}
+        environment: azurecloud
     
     - name: Deploy Azure Resource Manager (ARM) Template
       uses: Azure/arm-deploy@v1
