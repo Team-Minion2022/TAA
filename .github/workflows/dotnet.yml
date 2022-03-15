@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v3.0.0
       with:
         name: bicep
-        path: ${{ github.workspace }}/deploy.bicep
+        path: ${{ github.workspace }}/infrastructure/
         if-no-files-found: error
 
     - name: Notification for build failure
@@ -129,7 +129,7 @@ jobs:
       uses: Azure/arm-deploy@v1
       with:
         resourceGroupName: 'DevOpsGitHub-2022-03-14-team-02-prod'
-        template: ${{ github.workspace }}/deploy.bicep
+        template: ${{ github.workspace }}/infrastructure/deploy.bicep
         deploymentMode: incremental
         parameters: tenantGuid="cfe96ac1-4cd0-40ad-9751-b18802bf8822" appServicePlanName="asp-taa-prod-sea" keyVaultName="kv-taa-prod-sea" webAppName="web-taa-prod-sea" resourceGroupServicePrincipalManagedApplicationObjectId="20e6d507-69dd-4d56-b228-f1fb9175eff3"
           
