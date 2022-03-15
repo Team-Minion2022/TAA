@@ -131,12 +131,7 @@ jobs:
         resourceGroupName: 'DevOpsGitHub-2022-03-14-team-02-prod'
         template: ${{ github.workspace }}/deploy.bicep
         deploymentMode: incremental
-        parameters: |
-          tenantGuid="cfe96ac1-4cd0-40ad-9751-b18802bf8822"
-          appServicePlanName="asp-taa-prod-sea"
-          keyVaultName="kv-taa-prod-sea"
-          webAppName="web-taa-prod-sea"
-          resourceGroupServicePrincipalManagedApplicationObjectId="20e6d507-69dd-4d56-b228-f1fb9175eff3"
+        parameters: tenantGuid="cfe96ac1-4cd0-40ad-9751-b18802bf8822" appServicePlanName="asp-taa-prod-sea" keyVaultName="kv-taa-prod-sea" webAppName="web-taa-prod-sea" resourceGroupServicePrincipalManagedApplicationObjectId="20e6d507-69dd-4d56-b228-f1fb9175eff3"
           
   deploy_to_prod:
     runs-on: ubuntu-latest
